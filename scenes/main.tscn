@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbjay8bmda8td"]
+[gd_scene load_steps=14 format=3 uid="uid://dbjay8bmda8td"]
 
 [ext_resource type="FontFile" uid="uid://cdqfojhjtrcol" path="res://assets/fonts/Uni Sans Heavy.otf" id="1_8qg80"]
 [ext_resource type="Script" path="res://scripts/bg_text_scroll.gd" id="1_j8m0p"]
@@ -13,30 +13,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6q64v"]
 shader = ExtResource("8_tpekb")
-shader_parameter/enable_shift = 0.83
+shader_parameter/enable_shift = 0.195
 shader_parameter/shake_power = 0.03
 shader_parameter/shake_rate = 0.2
 shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8e20"]
-shader = ExtResource("8_tpekb")
-shader_parameter/enable_shift = 0.75
-shader_parameter/shake_power = 0.03
-shader_parameter/shake_rate = 0.2
-shader_parameter/shake_speed = 5.0
-shader_parameter/shake_block_size = 30.5
-shader_parameter/shake_color_rate = 0.01
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_isnyd"]
-shader = ExtResource("8_tpekb")
-shader_parameter/enable_shift = 0.0
-shader_parameter/shake_power = 0.005
-shader_parameter/shake_rate = 0.2
-shader_parameter/shake_speed = 0.1
-shader_parameter/shake_block_size = 20.0
-shader_parameter/shake_color_rate = 0.005
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_p5xme"]
 
@@ -129,43 +111,40 @@ layout_mode = 2
 
 [node name="GlitchBG" type="TextureRect" parent="UI/MarginContainer2/Control"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -368.0
-offset_top = -400.0
-offset_right = 368.0
-offset_bottom = 400.0
-grow_horizontal = 2
+offset_left = -935.0
+offset_top = -460.5
+offset_bottom = 460.5
+grow_horizontal = 0
 grow_vertical = 2
-pivot_offset = Vector2(368, 400)
+pivot_offset = Vector2(467, 460)
 texture = ExtResource("4_11ws3")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="GlitchLogo" type="TextureRect" parent="UI/MarginContainer2/Control"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -368.0
-offset_top = -400.0
-offset_right = 368.0
-offset_bottom = 400.0
-grow_horizontal = 2
+offset_left = -935.0
+offset_top = -460.5
+offset_bottom = 460.5
+grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.955, 0.955)
-pivot_offset = Vector2(368, 400)
+pivot_offset = Vector2(467, 460)
 texture = ExtResource("3_82lte")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="GlitchLogo2" type="TextureRect" parent="UI/MarginContainer2/Control"]
-visible = false
+[node name="GlitchOverlay" type="TextureRect" parent="UI/MarginContainer2/Control"]
 material = SubResource("ShaderMaterial_6q64v")
 layout_mode = 1
 anchors_preset = 8
@@ -184,25 +163,8 @@ pivot_offset = Vector2(368, 400)
 texture = ExtResource("3_82lte")
 expand_mode = 3
 stretch_mode = 5
-
-[node name="ColorRect" type="ColorRect" parent="UI/MarginContainer2/Control"]
-material = SubResource("ShaderMaterial_b8e20")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Glitch" type="ColorRect" parent="UI"]
-material = SubResource("ShaderMaterial_isnyd")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("8_sw871")
+rand_interval = Vector2(7, 10)
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 0
