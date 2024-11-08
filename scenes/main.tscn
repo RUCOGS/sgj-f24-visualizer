@@ -128,16 +128,15 @@ stretch_mode = 5
 
 [node name="GlitchLogo" type="TextureRect" parent="UI/MarginContainer2/Control"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -368.0
-offset_top = -400.0
-offset_right = 567.0
-offset_bottom = 521.0
-grow_horizontal = 2
+offset_left = -935.0
+offset_top = -460.5
+offset_bottom = 460.5
+grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.955, 0.955)
 pivot_offset = Vector2(467, 460)
