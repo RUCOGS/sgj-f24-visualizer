@@ -22,6 +22,9 @@ class_name Visualizer
 @export var volume_range_editor: Vector2Editor
 @export var scale_range_editor: Vector2Editor
 
+@export var theme: Control
+@export var attendance_qr: Control
+
 var output_playback: AudioStreamGeneratorPlayback
 var volume_cache = []
 var volume_cache_timer: float = 0
@@ -99,3 +102,15 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("debug"):
 		debug_ui.visible = not debug_ui.visible
+	
+	if Input.is_action_just_pressed("fullscreen"):
+		if get_window().mode == Window.MODE_FULLSCREEN:
+			get_window().mode = Window.MODE_WINDOWED
+		else:
+			get_window().mode = Window.MODE_FULLSCREEN
+	
+	if Input.is_action_just_pressed("reveal"):
+		theme.visible = not theme.visible
+
+	if Input.is_action_just_pressed("qr"):
+		attendance_qr.visible = not attendance_qr.visible

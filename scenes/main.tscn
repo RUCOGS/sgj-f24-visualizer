@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbjay8bmda8td"]
+[gd_scene load_steps=16 format=3 uid="uid://dbjay8bmda8td"]
 
 [ext_resource type="FontFile" uid="uid://cdqfojhjtrcol" path="res://assets/fonts/Uni Sans Heavy.otf" id="1_8qg80"]
 [ext_resource type="Script" path="res://scripts/bg_text_scroll.gd" id="1_j8m0p"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://scripts/visualizer.gd" id="5_y76k8"]
 [ext_resource type="Script" path="res://scripts/glitch.gd" id="8_sw871"]
 [ext_resource type="Shader" path="res://assets/shader/glitch.gdshader" id="8_tpekb"]
+[ext_resource type="FontFile" uid="uid://ce2wjdkgpa7ja" path="res://assets/fonts/steelfish bd.otf" id="9_18qmn"]
+[ext_resource type="Texture2D" uid="uid://htayuvsavl0x" path="res://assets/textures/attendance_qr.png" id="10_yqdl7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6q64v"]
 shader = ExtResource("8_tpekb")
@@ -138,27 +140,25 @@ offset_top = -460.5
 offset_bottom = 460.5
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.955, 0.955)
 pivot_offset = Vector2(467, 460)
 texture = ExtResource("3_82lte")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="GlitchOverlay" type="TextureRect" parent="UI/MarginContainer2/Control"]
+[node name="GlitchOverlay" type="TextureRect" parent="UI/MarginContainer2/Control/GlitchLogo"]
 material = SubResource("ShaderMaterial_6q64v")
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -368.0
-offset_top = -400.0
-offset_right = 368.0
-offset_bottom = 400.0
-grow_horizontal = 2
+offset_left = -956.225
+offset_top = -481.327
+offset_right = -21.225
+offset_bottom = 439.673
+grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.955, 0.955)
 pivot_offset = Vector2(368, 400)
 texture = ExtResource("3_82lte")
 expand_mode = 3
@@ -191,6 +191,63 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_gey6x")
 theme_override_font_sizes/font_size = 36
 text = "Fall 2024"
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -234.0
+offset_right = 708.0
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer3"]
+layout_mode = 2
+alignment = 2
+
+[node name="Fall2024" type="Label" parent="UI/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_18qmn")
+theme_override_font_sizes/font_size = 36
+text = "COGS.CLUB"
+
+[node name="Node2D" type="Control" parent="UI/MarginContainer3"]
+layout_mode = 2
+
+[node name="QR" type="TextureRect" parent="UI/MarginContainer3/Node2D"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 166.0
+offset_top = -720.0
+offset_right = 733.0
+offset_bottom = -153.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("10_yqdl7")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Theme" type="Label" parent="UI/MarginContainer3/Node2D"]
+visible = false
+offset_left = 265.0
+offset_top = -450.0
+offset_right = 633.0
+offset_bottom = -257.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 64
+theme_override_fonts/font = ExtResource("1_8qg80")
+theme_override_font_sizes/font_size = 192
+text = "BUG"
 
 [node name="DEBUG" type="Control" parent="UI"]
 layout_mode = 1
@@ -235,7 +292,7 @@ value = Vector2(0, 0)
 mode = 1
 label_text = "Scale Range"
 
-[node name="Visualizer" type="Node" parent="." node_paths=PackedStringArray("logo", "output_player", "capture_player", "input_device_option_button", "debug_label", "debug_ui", "volume_range_editor", "scale_range_editor")]
+[node name="Visualizer" type="Node" parent="." node_paths=PackedStringArray("logo", "output_player", "capture_player", "input_device_option_button", "debug_label", "debug_ui", "volume_range_editor", "scale_range_editor", "theme", "attendance_qr")]
 script = ExtResource("5_y76k8")
 logo = NodePath("../UI/MarginContainer2/Control/GlitchLogo")
 output_player = NodePath("OutputStream")
@@ -247,6 +304,8 @@ debug_ui = NodePath("../UI/DEBUG")
 init_scale_range = Vector2(0.9, 1.1)
 volume_range_editor = NodePath("../UI/DEBUG/MarginContainer/VBoxContainer/VolumeRangeEditor")
 scale_range_editor = NodePath("../UI/DEBUG/MarginContainer/VBoxContainer/ScaleRangeEditor")
+theme = NodePath("../UI/MarginContainer3/Node2D/Theme")
+attendance_qr = NodePath("../UI/MarginContainer3/Node2D/QR")
 
 [node name="OutputStream" type="AudioStreamPlayer" parent="Visualizer"]
 stream = SubResource("AudioStreamGenerator_p5xme")
