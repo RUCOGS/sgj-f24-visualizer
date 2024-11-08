@@ -1,0 +1,25 @@
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://drbns405cfd4x"]
+
+[sub_resource type="AudioEffectCapture" id="AudioEffectCapture_eyu5e"]
+resource_name = "Capture"
+
+[sub_resource type="AudioEffectHighShelfFilter" id="AudioEffectHighShelfFilter_3ykm2"]
+resource_name = "HighShelfFilter"
+
+[resource]
+bus/1/name = &"Dummy"
+bus/1/solo = false
+bus/1/mute = true
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/2/name = &"Capture"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = -0.261596
+bus/2/send = &"Dummy"
+bus/2/effect/0/effect = SubResource("AudioEffectCapture_eyu5e")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectHighShelfFilter_3ykm2")
+bus/2/effect/1/enabled = true

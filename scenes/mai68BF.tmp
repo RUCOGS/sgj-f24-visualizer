@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbjay8bmda8td"]
+
+[ext_resource type="FontFile" uid="uid://cdqfojhjtrcol" path="res://assets/fonts/Uni Sans Heavy.otf" id="1_8qg80"]
+[ext_resource type="FontFile" uid="uid://hdl45x67bclw" path="res://assets/fonts/Uni Sans Thin.otf" id="2_gey6x"]
+[ext_resource type="Texture2D" uid="uid://djfkkn7it6vx6" path="res://assets/textures/SGJ_Fall_24_Logo_HD_Glitch.png" id="3_82lte"]
+[ext_resource type="Texture2D" uid="uid://decvxakoxtukq" path="res://assets/textures/SGJ_Fall_24_Logo_HD_Glitch_bg.png" id="4_11ws3"]
+[ext_resource type="Script" path="res://scripts/visualizer.gd" id="5_y76k8"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_p5xme"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_7y212"]
+
+[node name="Main" type="Node"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="SGJTtitle" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8qg80")
+theme_override_font_sizes/font_size = 64
+text = "SCARLET GAME JAM"
+
+[node name="Fall2024" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_gey6x")
+theme_override_font_sizes/font_size = 36
+text = "Fall 2024"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -400.0
+offset_bottom = 400.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 64
+
+[node name="GlitchBG" type="TextureRect" parent="UI/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("4_11ws3")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GlitchLogo" type="TextureRect" parent="UI/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("3_82lte")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="DEBUG" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DEBUG"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 128.0
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DEBUG/MarginContainer"]
+layout_mode = 2
+
+[node name="InputDeviceOptionButton" type="OptionButton" parent="UI/DEBUG/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Visualizer" type="Node" parent="." node_paths=PackedStringArray("logo", "capture_player", "input_device_option_button")]
+script = ExtResource("5_y76k8")
+logo = NodePath("../UI/MarginContainer2/GlitchLogo")
+capture_player = NodePath("CaptureStream")
+input_device_option_button = NodePath("../UI/DEBUG/MarginContainer/VBoxContainer/InputDeviceOptionButton")
+
+[node name="OutputStream" type="AudioStreamPlayer" parent="Visualizer"]
+stream = SubResource("AudioStreamGenerator_p5xme")
+autoplay = true
+
+[node name="CaptureStream" type="AudioStreamPlayer" parent="Visualizer"]
+stream = SubResource("AudioStreamMicrophone_7y212")
+autoplay = true
+bus = &"Capture"

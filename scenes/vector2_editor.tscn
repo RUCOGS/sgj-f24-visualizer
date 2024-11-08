@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctbm6u0k6m4en"]
+
+[ext_resource type="Script" path="res://scenes/vector_2_editor.gd" id="1_x6lc0"]
+
+[node name="Vector2Editor" type="VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+size_flags_horizontal = 0
+script = ExtResource("1_x6lc0")
+value = null
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XSpinBox" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+value = -1.0
+allow_greater = true
+allow_lesser = true
+prefix = "x"
+
+[node name="YSpinBox" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.01
+value = -1.0
+allow_greater = true
+allow_lesser = true
+prefix = "y"

@@ -1,0 +1,296 @@
+[gd_scene load_steps=16 format=3 uid="uid://dbjay8bmda8td"]
+
+[ext_resource type="FontFile" uid="uid://cdqfojhjtrcol" path="res://assets/fonts/Uni Sans Heavy.otf" id="1_8qg80"]
+[ext_resource type="Script" path="res://scripts/bg_text_scroll.gd" id="1_j8m0p"]
+[ext_resource type="Script" path="res://scripts/text_scroll.gd" id="1_ru2uv"]
+[ext_resource type="FontFile" uid="uid://hdl45x67bclw" path="res://assets/fonts/Uni Sans Thin.otf" id="2_gey6x"]
+[ext_resource type="Texture2D" uid="uid://djfkkn7it6vx6" path="res://assets/textures/SGJ_Fall_24_Logo_HD_Glitch.png" id="3_82lte"]
+[ext_resource type="Texture2D" uid="uid://decvxakoxtukq" path="res://assets/textures/SGJ_Fall_24_Logo_HD_Glitch_bg.png" id="4_11ws3"]
+[ext_resource type="PackedScene" uid="uid://ctbm6u0k6m4en" path="res://scenes/vector2_editor.tscn" id="5_vgppo"]
+[ext_resource type="Script" path="res://scripts/visualizer.gd" id="5_y76k8"]
+[ext_resource type="Script" path="res://scripts/glitch.gd" id="8_sw871"]
+[ext_resource type="Shader" path="res://assets/shader/glitch.gdshader" id="8_tpekb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6q64v"]
+shader = ExtResource("8_tpekb")
+shader_parameter/enable_shift = 0.83
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8e20"]
+shader = ExtResource("8_tpekb")
+shader_parameter/enable_shift = 0.75
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_isnyd"]
+shader = ExtResource("8_tpekb")
+shader_parameter/enable_shift = 0.0
+shader_parameter/shake_power = 0.005
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 0.1
+shader_parameter/shake_block_size = 20.0
+shader_parameter/shake_color_rate = 0.005
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_p5xme"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_7y212"]
+
+[node name="Main" type="Node"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BGTextScroll" type="Control" parent="UI" node_paths=PackedStringArray("text_scroll_container", "text_scroll")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.523599
+pivot_offset = Vector2(960, 540)
+script = ExtResource("1_j8m0p")
+text_scroll_container = NodePath("TextScrollContainer")
+text_scroll = NodePath("TextScrollContainer/TextScroll")
+rows = 29
+
+[node name="TextScrollContainer" type="VBoxContainer" parent="UI/BGTextScroll"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 540.0
+offset_right = -1920.0
+offset_bottom = -476.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="TextScroll" type="Control" parent="UI/BGTextScroll/TextScrollContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+script = ExtResource("1_ru2uv")
+speed = 100.0
+padding = 16.0
+text_count = 7
+
+[node name="LabelContainer" type="Control" parent="UI/BGTextScroll/TextScrollContainer/TextScroll"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextLabel" type="Label" parent="UI/BGTextScroll/TextScrollContainer/TextScroll/LabelContainer"]
+layout_mode = 2
+offset_right = 580.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0.11539, 0.150025, 0.216146, 1)
+theme_override_fonts/font = ExtResource("1_8qg80")
+theme_override_font_sizes/font_size = 64
+text = "SCARLET GAME JAM"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -400.0
+offset_bottom = 400.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 64
+
+[node name="Control" type="Control" parent="UI/MarginContainer2"]
+layout_mode = 2
+
+[node name="GlitchBG" type="TextureRect" parent="UI/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -400.0
+offset_right = 368.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(368, 400)
+texture = ExtResource("4_11ws3")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GlitchLogo" type="TextureRect" parent="UI/MarginContainer2/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -400.0
+offset_right = 368.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.955, 0.955)
+pivot_offset = Vector2(368, 400)
+texture = ExtResource("3_82lte")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GlitchLogo2" type="TextureRect" parent="UI/MarginContainer2/Control"]
+visible = false
+material = SubResource("ShaderMaterial_6q64v")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -400.0
+offset_right = 368.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.955, 0.955)
+pivot_offset = Vector2(368, 400)
+texture = ExtResource("3_82lte")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="UI/MarginContainer2/Control"]
+material = SubResource("ShaderMaterial_b8e20")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Glitch" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_isnyd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_sw871")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 0
+offset_right = 708.0
+offset_bottom = 234.0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="SGJTtitle" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8qg80")
+theme_override_font_sizes/font_size = 64
+text = "SCARLET GAME JAM"
+
+[node name="Fall2024" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_gey6x")
+theme_override_font_sizes/font_size = 36
+text = "Fall 2024"
+
+[node name="DEBUG" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DEBUG"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+offset_right = 128.0
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DEBUG/MarginContainer"]
+layout_mode = 2
+
+[node name="DebugLabel" type="Label" parent="UI/DEBUG/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "DEBUG LABEL"
+
+[node name="InputDeviceOptionButton" type="OptionButton" parent="UI/DEBUG/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VolumeRangeEditor" parent="UI/DEBUG/MarginContainer/VBoxContainer" instance=ExtResource("5_vgppo")]
+layout_mode = 2
+value = Vector2(0, 0)
+mode = 1
+label_text = "Volume Range"
+
+[node name="ScaleRangeEditor" parent="UI/DEBUG/MarginContainer/VBoxContainer" instance=ExtResource("5_vgppo")]
+layout_mode = 2
+value = Vector2(0, 0)
+mode = 1
+label_text = "Scale Range"
+
+[node name="Visualizer" type="Node" parent="." node_paths=PackedStringArray("logo", "output_player", "capture_player", "input_device_option_button", "debug_label", "debug_ui", "volume_range_editor", "scale_range_editor")]
+script = ExtResource("5_y76k8")
+logo = NodePath("../UI/MarginContainer2/Control/GlitchLogo")
+output_player = NodePath("OutputStream")
+capture_player = NodePath("CaptureStream")
+input_device_option_button = NodePath("../UI/DEBUG/MarginContainer/VBoxContainer/InputDeviceOptionButton")
+volume_cache_size = 2
+debug_label = NodePath("../UI/DEBUG/MarginContainer/VBoxContainer/DebugLabel")
+debug_ui = NodePath("../UI/DEBUG")
+init_scale_range = Vector2(0.9, 1.1)
+volume_range_editor = NodePath("../UI/DEBUG/MarginContainer/VBoxContainer/VolumeRangeEditor")
+scale_range_editor = NodePath("../UI/DEBUG/MarginContainer/VBoxContainer/ScaleRangeEditor")
+
+[node name="OutputStream" type="AudioStreamPlayer" parent="Visualizer"]
+stream = SubResource("AudioStreamGenerator_p5xme")
+autoplay = true
+
+[node name="CaptureStream" type="AudioStreamPlayer" parent="Visualizer"]
+stream = SubResource("AudioStreamMicrophone_7y212")
+autoplay = true
+bus = &"Capture"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dd64tttjvc5dp"
+path="res://.godot/imported/Katana Zero (Ost-Version).mp3-6dc2d006ddd7eb3360a922789830e829.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/Katana Zero (Ost-Version).mp3"
+dest_files=["res://.godot/imported/Katana Zero (Ost-Version).mp3-6dc2d006ddd7eb3360a922789830e829.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
